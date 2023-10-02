@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "TourTracker",
+    "slug": "TourTracker",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
