@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function HomeScreen() {
   const [playlistUrl, setPlaylistUrl] = useState("");
+  const navigation = useNavigation(); // Instantiate navigation
 
   const handleSubmit = () => {
     // Add functionality to handle the playlist URL submission
+  };
+
+  const handleLogin = () => {
+    navigation.navigate('Login');
+  };
+
+  const handleSignUp = () => {
+    navigation.navigate('SignUp');
   };
 
   return (
@@ -29,8 +39,16 @@ export default function HomeScreen() {
       </TouchableOpacity>
 
       <View style={styles.footer}>
+        <TouchableOpacity onPress={handleLogin} style={styles.footerButton}>
+          <Text style={styles.footerButtonText}>Login</Text>
+        </TouchableOpacity>
+        
         <Text style={styles.footerText}>Powered by Spotify</Text>
         {/* Add a tiny Spotify logo here */}
+        
+        <TouchableOpacity onPress={handleSignUp} style={styles.footerButton}>
+          <Text style={styles.footerButtonText}>Sign Up</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -89,6 +107,20 @@ const styles = StyleSheet.create({
     bottom: 10,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingHorizontal: 20,
+  },
+  footerButton: {
+    backgroundColor: '#191414',
+    borderRadius: 25,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+  },
+  footerButtonText: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    fontSize: 14,
   },
   footerText: {
     color: '#FFFFFF',
