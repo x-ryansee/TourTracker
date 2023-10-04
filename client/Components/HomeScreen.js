@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useUser } from '../UserContext';
 
 export default function HomeScreen() {
   const [playlistUrl, setPlaylistUrl] = useState("");
+  const { isAuthenticated, setIsAuthenticated } = useUser(); // Utilizing the user context
   const navigation = useNavigation(); // Instantiate navigation
-
+  
   const handleSubmit = () => {
-    // Add functionality to handle the playlist URL submission
+    // Handle playlist URL submission
   };
 
   const handleLogin = () => {
@@ -18,9 +20,19 @@ export default function HomeScreen() {
     navigation.navigate('SignUp');
   };
 
+  const handleLogout = () => {
+    // Reset user state upon logout
+    setIsAuthenticated(false);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>ConcertFinder</Text>
+      {/* Conditionally render menu button if user is authenticated */}
+      {isAuthenticated && (
+        <Button title="Menu" onPress={() => navigation.navigate('Menu')} />
+      )}
+
       <Text style={styles.subtitle}>Find live concerts from your favorite playlists!</Text>
       <Text style={styles.instruction}>
         Paste your Spotify playlist link below to discover upcoming tours from the artists!
@@ -39,16 +51,25 @@ export default function HomeScreen() {
       </TouchableOpacity>
 
       <View style={styles.footer}>
-        <TouchableOpacity onPress={handleLogin} style={styles.footerButton}>
-          <Text style={styles.footerButtonText}>Login</Text>
-        </TouchableOpacity>
+        {/* Conditionally render Login/Logout button based on authentication state */}
+        {isAuthenticated ? (
+          <TouchableOpacity onPress={handleLogout} style={styles.footerButton}>
+            <Text style={styles.footerButtonText}>Logout</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={handleLogin} style={styles.footerButton}>
+            <Text style={styles.footerButtonText}>Login</Text>
+          </TouchableOpacity>
+        )}
         
         <Text style={styles.footerText}>Powered by Spotify</Text>
         {/* Add a tiny Spotify logo here */}
         
-        <TouchableOpacity onPress={handleSignUp} style={styles.footerButton}>
-          <Text style={styles.footerButtonText}>Sign Up</Text>
-        </TouchableOpacity>
+        {!isAuthenticated && (
+          <TouchableOpacity onPress={handleSignUp} style={styles.footerButton}>
+            <Text style={styles.footerButtonText}>Sign Up</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
