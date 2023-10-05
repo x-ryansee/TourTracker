@@ -9,7 +9,11 @@ export default function HomeScreen() {
   const navigation = useNavigation(); // Instantiate navigation
   
   const handleSubmit = () => {
-    // Handle playlist URL submission
+    if (playlistUrl.trim() === "") {
+      alert("Please provide a Spotify playlist link.");
+    } else {
+      navigation.navigate('ConcertResults', { playlistUrl }); 
+    }
   };
 
   const handleLogin = () => {

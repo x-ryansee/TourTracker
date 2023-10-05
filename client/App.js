@@ -5,6 +5,7 @@ import HomeScreen from './Components/HomeScreen';
 import LoginScreen from './Components/LoginScreen';
 import SignUpScreen from './Components/SignUpScreen';
 import { UserProvider } from './UserContext'; 
+import ConcertResultsScreen from './Components/ConcertResultsScreen';
 
 const Stack = createStackNavigator();
 
@@ -36,6 +37,15 @@ export default function App() {
               headerTintColor: '#FFFFFF',
             }} 
           />
+            <Stack.Screen 
+              name="ConcertResults" 
+              component={ConcertResultsScreen}
+              options={{
+                title: 'Concert Results',
+                headerStyle: { backgroundColor: '#1DB954' },
+                headerTintColor: '#FFFFFF',
+              }} 
+            />
         </Stack.Navigator>
       </NavigationContainer>
     </UserProvider>
