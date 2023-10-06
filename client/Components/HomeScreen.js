@@ -25,7 +25,7 @@ export default function HomeScreen() {
   };
 
   const handleLogout = () => {
-    // Reset user state upon logout
+    // Reset user state upon logout 
     setIsAuthenticated(false);
   };
 
