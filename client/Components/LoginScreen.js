@@ -6,7 +6,7 @@ export default function LoginScreen() {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    // TODO: Add logic to handle login
+    // TODO : Add logic to handle login
   };
 
   return (
