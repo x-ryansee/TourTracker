@@ -44,7 +44,7 @@ export default function App() {
                 title: 'Concert Results',
                 headerStyle: { backgroundColor: '#1DB954' },
                 headerTintColor: '#FFFFFF',
-              }} 
+              }}
             />
         </Stack.Navigator>
       </NavigationContainer>
