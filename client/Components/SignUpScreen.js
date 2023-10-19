@@ -7,7 +7,7 @@ export default function SignUpScreen() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSignUp = () => {
-    // TODO: Add logic to handle sign up
+    // TODO: Add logic to handle sign up 
   };
 
   return (
