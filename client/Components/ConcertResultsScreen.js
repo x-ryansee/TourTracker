@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 export default function ConcertResultsScreen({ route }) {
-  // Extract playlistUrl from the navigation parameters
+  // Extract playlistUrl from the navigation parameters 
   const { playlistUrl } = route.params;
 
   return (
