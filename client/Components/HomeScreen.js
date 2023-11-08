@@ -6,7 +6,7 @@ import { useUser } from '../UserContext';
 export default function HomeScreen() {
   const [playlistUrl, setPlaylistUrl] = useState("");
   const { isAuthenticated, setIsAuthenticated } = useUser(); // Utilizing the user context
-  const navigation = useNavigation(); // Instantiate navigation
+  const navigation = useNavigation(); // Instantiate navigation 
   
   const handleSubmit = () => {
     if (playlistUrl.trim() === "") {
