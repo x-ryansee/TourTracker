@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Button } from 'react-native';
+import { useFonts } from 'expo-font';
 import { useNavigation } from '@react-navigation/native';
 import { useUser } from '../UserContext';
 
 export default function HomeScreen() {
   const [playlistUrl, setPlaylistUrl] = useState("");
-  const { isAuthenticated, setIsAuthenticated } = useUser(); // Utilizing the user context
-  const navigation = useNavigation(); // Instantiate navigation 
+  const { isAuthenticated, setIsAuthenticated } = useUser();
+  const navigation = useNavigation();
   
+  // Load the font
+  const [fontsLoaded] = useFonts({
+    'MontserratAlternates-Medium': require('../assets/MontserratAlternates-Medium.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return null; // or a loading spinner
+  }
   const handleSubmit = () => {
     if (playlistUrl.trim() === "") {
       alert("Please provide a Spotify playlist link.");
@@ -25,19 +34,19 @@ export default function HomeScreen() {
   };
 
   const handleLogout = () => {
-    // Reset user state upon logout 
+    // Reset user state upon logout
     setIsAuthenticated(false);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>ConcertFinder</Text>
+      <Text style={styles.title}>Tour Tracker</Text>
       {/* Conditionally render menu button if user is authenticated */}
       {isAuthenticated && (
         <Button title="Menu" onPress={() => navigation.navigate('Menu')} />
       )}
 
-      <Text style={styles.subtitle}>Find live concerts from your favorite playlists!</Text>
+      <Text style={styles.subtitle}>Find live concerts from your favorite artists!</Text>
       <Text style={styles.instruction}>
         Paste your Spotify playlist link below to discover upcoming tours from the artists!
       </Text>
